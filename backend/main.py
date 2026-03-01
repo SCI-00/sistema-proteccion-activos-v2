@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from app.core.database import Base, engine
-from app.routers import auth, cedis, scorecards, presupuestos, documentos
+from app.routers import auth
 
 # Crear tablas
 @asynccontextmanager
@@ -32,10 +32,6 @@ app.add_middleware(
 
 # Routers
 app.include_router(auth.router, prefix="/api/auth", tags=["Autenticación"])
-app.include_router(cedis.router, prefix="/api/cedis", tags=["CEDIS"])
-app.include_router(scorecards.router, prefix="/api/scorecards", tags=["Scorecards"])
-app.include_router(presupuestos.router, prefix="/api/presupuestos", tags=["Presupuestos"])
-app.include_router(documentos.router, prefix="/api/documentos", tags=["Documentos"])
 
 @app.get("/")
 def root():
